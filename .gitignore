@@ -2,3 +2,4 @@
 job4j_fast_food.iml
 # Project exclude paths
 /target/
+.gitignore
