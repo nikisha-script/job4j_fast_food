@@ -7,21 +7,21 @@ import lombok.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Courier {
 
     @EqualsAndHashCode.Include
-    @NonNull
-    private Long id;
-    @NonNull
+    private int id;
     private String name;
-    @NonNull
-    private Order order;
-    @NonNull
     private String geolocation;
-    @NonNull
-    private String address;
-    @NonNull
-    private boolean orderReport;
+    private User user;
 
+    public Courier(@NonNull int id,
+                   @NonNull String name,
+                   @NonNull String geolocation,
+                   @NonNull User user) {
+        this.id = id;
+        this.name = name;
+        this.geolocation = geolocation;
+        this.user = user;
+    }
 }

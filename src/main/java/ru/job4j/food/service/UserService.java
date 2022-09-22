@@ -1,7 +1,6 @@
 package ru.job4j.food.service;
 
 import ru.job4j.food.entity.Courier;
-import ru.job4j.food.entity.Order;
 import ru.job4j.food.entity.User;
 import ru.job4j.food.store.UserRepository;
 
@@ -10,8 +9,7 @@ import java.util.Optional;
 
 public class UserService implements UserRepository {
 
-    public void doOrder(Order order) {
-
+    public void doOrder(Courier courier) {
     }
 
     public String controlOfGeolocationCourier(Courier courier) {

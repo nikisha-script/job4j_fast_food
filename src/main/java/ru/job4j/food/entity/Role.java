@@ -7,13 +7,14 @@ import lombok.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Role {
 
     @EqualsAndHashCode.Include
-    @NonNull
-    private Long id;
-    @NonNull
+    private int id;
     private String name;
 
+    public Role(@NonNull int id, @NonNull String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

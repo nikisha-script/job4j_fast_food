@@ -7,15 +7,21 @@ import lombok.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Food {
 
     @EqualsAndHashCode.Include
-    @NonNull
-    private Long id;
-    @NonNull
+    private int id;
     private String name;
-    @NonNull
     private String category;
+    private int price;
 
+    public Food(@NonNull int id,
+                @NonNull String name,
+                @NonNull String category,
+                @NonNull int price) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.price = price;
+    }
 }

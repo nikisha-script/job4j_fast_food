@@ -8,10 +8,7 @@ import java.util.Optional;
 
 public class CourierService implements CourierRepository {
 
-    public void orderReport() {
-
-    }
-
+    @Override
     public void updateGeolocation() {
 
     }

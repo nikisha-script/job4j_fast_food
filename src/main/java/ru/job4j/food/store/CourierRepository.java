@@ -17,4 +17,6 @@ public interface CourierRepository {
 
     void saveOrUpdate(Courier courier);
 
+    void updateGeolocation();
+
 }
