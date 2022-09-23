@@ -13,11 +13,15 @@ import java.util.ArrayList;
 @Disabled
 class UserServiceTest {
 
-    private UserService service;
+    private UserService userService;
+    private OrderService orderService;
+    private CourierService courierService;
 
     @BeforeEach
     public void init() {
-        service = new UserService();
+        userService = new UserService();
+        orderService = new OrderService();
+        courierService = new CourierService();
     }
 
    @Test
@@ -25,15 +29,19 @@ class UserServiceTest {
         User user = new User(1, "Danil", "Nikishin", "email", LocalDateTime.now());
         Role role = new Role(1, "user");
         user.setRole(role);
+        userService.saveOrUpdate(user);
         Food milk = new Food(1, "milk", "food", 100);
         Order order = new Order(1, new ArrayList<>() {{
             add(milk);
+
         }}, LocalDateTime.now(), "mira 28", user, false);
         user.setOrders(new ArrayList<>() {{
             add(order);
+
         }});
         Courier courier = new Courier(1, "Petr", "kotova 12", user);
-        service.doOrder(courier);
+        orderService.doOrder(user, courier);
+        courierService.completeOrder(courier.getUser().getOrders().get(0));
         assertThat(courier.getUser().getOrders().get(0).getOrderReport()).isFalse();
    }
 

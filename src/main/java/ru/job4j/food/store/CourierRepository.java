@@ -1,6 +1,7 @@
 package ru.job4j.food.store;
 
 import ru.job4j.food.entity.Courier;
+import ru.job4j.food.entity.Order;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,5 +19,7 @@ public interface CourierRepository {
     void saveOrUpdate(Courier courier);
 
     void updateGeolocation();
+
+    boolean completeOrder(Order order);
 
 }

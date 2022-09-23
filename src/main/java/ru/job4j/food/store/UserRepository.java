@@ -1,5 +1,6 @@
 package ru.job4j.food.store;
 
+import ru.job4j.food.entity.Courier;
 import ru.job4j.food.entity.User;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface UserRepository {
     void delete(Long id);
 
     void saveOrUpdate(User user);
+
+    String controlOfGeolocationCourier(Courier courier);
 
 
 }

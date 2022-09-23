@@ -9,9 +9,7 @@ import java.util.Optional;
 
 public class UserService implements UserRepository {
 
-    public void doOrder(Courier courier) {
-    }
-
+    @Override
     public String controlOfGeolocationCourier(Courier courier) {
         return null;
     }
