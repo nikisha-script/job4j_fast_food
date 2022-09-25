@@ -1,4 +1,4 @@
-package ru.job4j.orders;
+package ru.job4j.foods;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
