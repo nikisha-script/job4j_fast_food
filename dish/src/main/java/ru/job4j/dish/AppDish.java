@@ -1,11 +1,13 @@
-package ru.job4j.food;
+package ru.job4j.dish;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class App {
+public class AppDish {
+
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(AppDish.class, args);
     }
+
 }

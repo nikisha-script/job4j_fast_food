@@ -1,36 +1,36 @@
-package ru.job4j.domains.entity;
+package ru.job4j.order.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
+@Entity(name = "order_item")
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name = "orders")
-public class Order {
+@AllArgsConstructor
+@Builder
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @OneToMany(mappedBy = "marketOrder", cascade = CascadeType.PERSIST)
-    private List<OrderItem> items;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "price")
-    private Double price;
+    @Column(name = "count")
+    private Integer count;
 
-    @Column(name = "is_done")
-    private Boolean isDone;
+    @Column(name = "item_price")
+    private Double itemPrice;
 
-    @Column(name = "created")
-    private LocalDateTime created;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_id")
+    private Order marketOrder;
 
     @Override
     public boolean equals(Object o) {
@@ -40,8 +40,8 @@ public class Order {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
             return false;
         }
-        Order order = (Order) o;
-        return id != null && Objects.equals(id, order.id);
+        OrderItem orderItem = (OrderItem) o;
+        return id != null && Objects.equals(id, orderItem.id);
     }
 
     @Override

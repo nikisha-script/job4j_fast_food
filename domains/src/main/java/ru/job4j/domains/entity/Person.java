@@ -1,11 +1,10 @@
 package ru.job4j.domains.entity;
 
-import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor()
 public class Person {
 
     private Long id;

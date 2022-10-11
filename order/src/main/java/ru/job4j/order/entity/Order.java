@@ -1,6 +1,9 @@
-package ru.job4j.domains.entity;
+package ru.job4j.order.entity;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -28,9 +31,6 @@ public class Order {
 
     @Column(name = "is_done")
     private Boolean isDone;
-
-    @Column(name = "created")
-    private LocalDateTime created;
 
     @Override
     public boolean equals(Object o) {

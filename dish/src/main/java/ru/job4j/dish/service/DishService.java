@@ -1,40 +1,36 @@
 package ru.job4j.dish.service;
 
-import ru.job4j.dish.store.DishStore;
-import ru.job4j.domains.entity.Dish;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import ru.job4j.dish.dto.DishDto;
+import ru.job4j.dish.mapper.DishMapper;
+import ru.job4j.dish.store.DishRepository;
+import ru.job4j.dish.entity.Dish;
 
 import java.util.List;
 import java.util.Optional;
 
-public class DishService implements DishStore {
+@Service
+@RequiredArgsConstructor
+public class DishService {
 
-    @Override
-    public Optional<Dish> addDish(Dish dish) {
-        return Optional.empty();
+    private final DishRepository dishRepository;
+    private final DishMapper dishMapper;
+
+    public List<Dish> findAll() {
+        return dishRepository.findAll();
     }
 
-    @Override
-    public Optional<Dish> findDishByName(Dish name) {
-        return Optional.empty();
+    public Optional<Dish> findById(Long id) {
+        return dishRepository.findById(id);
     }
 
-    @Override
-    public Optional<Dish> findDishById(Long id) {
-        return Optional.empty();
+    public Dish create(DishDto dish) {
+        return dishRepository.save(dishMapper.mapToEntity(dish));
     }
 
-    @Override
-    public List<Dish> findAllDish() {
-        return null;
+    public void delete(Long id) {
+        dishRepository.deleteById(id);
     }
 
-    @Override
-    public boolean delete(Long id) {
-        return false;
-    }
-
-    @Override
-    public boolean update(Long id) {
-        return false;
-    }
 }

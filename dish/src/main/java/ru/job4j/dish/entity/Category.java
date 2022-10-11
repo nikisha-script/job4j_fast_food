@@ -1,36 +1,32 @@
-package ru.job4j.domains.entity;
+package ru.job4j.dish.entity;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
+@Entity(name = "categories")
 @Setter
+@Getter
 @NoArgsConstructor
-@Entity
-@Table(name = "orders")
-public class Order {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @OneToMany(mappedBy = "marketOrder", cascade = CascadeType.PERSIST)
-    private List<OrderItem> items;
+    @Column
+    private String title;
 
-    @Column(name = "price")
-    private Double price;
-
-    @Column(name = "is_done")
-    private Boolean isDone;
-
-    @Column(name = "created")
-    private LocalDateTime created;
+    @OneToMany(mappedBy = "category")
+    @OrderBy("name")
+    private List<Dish> products;
 
     @Override
     public boolean equals(Object o) {
@@ -40,8 +36,8 @@ public class Order {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
             return false;
         }
-        Order order = (Order) o;
-        return id != null && Objects.equals(id, order.id);
+        Category category = (Category) o;
+        return id != null && Objects.equals(id, category.id);
     }
 
     @Override

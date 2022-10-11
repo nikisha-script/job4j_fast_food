@@ -1,6 +1,8 @@
-package ru.job4j.domains.entity;
+package ru.job4j.dish.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -10,7 +12,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "dishies")
+@Table(name = "dishes")
 public class Dish {
 
     @Id
@@ -24,12 +26,8 @@ public class Dish {
     @Column(name = "cost")
     private Double cost;
 
-    @ManyToOne
-    @JoinTable(
-            name = "dishes_categories",
-            joinColumns = {@JoinColumn(name = "id_dishes")},
-            inverseJoinColumns = {@JoinColumn(name = "id_categories")}
-    )
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Override
