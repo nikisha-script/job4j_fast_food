@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/categories")
+@CrossOrigin(origins = "http://localhost:8080")
 public class CategoryController {
 
     private final CategoryService categoryService;

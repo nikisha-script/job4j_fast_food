@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/dishes")
+@CrossOrigin(origins = "http://localhost:8080")
 public class DishController {
 
     private final DishService dishService;
@@ -26,6 +27,11 @@ public class DishController {
     @PostMapping
     public Dish createNewProduct(@RequestBody DishDto dishDto) {
         return dishService.create(dishDto);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteDish(@PathVariable(name = "id") Long id) {
+        dishService.delete(id);
     }
 
     @PostMapping("/orders")

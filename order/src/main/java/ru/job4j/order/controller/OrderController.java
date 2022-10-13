@@ -10,7 +10,6 @@ import ru.job4j.order.service.OrderService;
 
 import javax.persistence.EntityExistsException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 @RestController
@@ -21,7 +20,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public String createOrder(@RequestBody DishesFromService dishes) {
+    public Order createOrder(@RequestBody DishesFromService dishes) {
         Order order = new Order();
         order.setItems(dishes.getDishes()
                 .stream()
@@ -38,8 +37,7 @@ public class OrderController {
         order.setPrice(price);
         order.setCreated(LocalDateTime.now());
         order.setIsDone(false);
-        Order saveOrder = orderService.save(order);
-        return "http://localhost:8182/api/v1/orders/" + saveOrder.getId();
+        return orderService.save(order);
     }
 
     @GetMapping("{id}")
