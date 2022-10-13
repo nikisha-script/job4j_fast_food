@@ -1,6 +1,6 @@
 package ru.job4j.dish.entity;
 
-import lombok.EqualsAndHashCode;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,23 +10,21 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-@Entity(name = "categories")
+@Entity
 @Setter
 @Getter
 @NoArgsConstructor
+@Table(name = "categories")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
+    @Column(name = "id")
     private Long id;
 
-    @Column
-    private String title;
+    @Column(name = "name")
+    private String name;
 
-    @OneToMany(mappedBy = "category")
-    @OrderBy("name")
-    private List<Dish> products;
 
     @Override
     public boolean equals(Object o) {

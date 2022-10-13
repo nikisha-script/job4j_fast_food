@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.job4j.dish.dto.DishDto;
 import ru.job4j.dish.service.DishService;
 import ru.job4j.dish.entity.Dish;
+import ru.job4j.dish.service.OrderService;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -16,30 +16,11 @@ import java.util.stream.Collectors;
 public class DishController {
 
     private final DishService dishService;
+    private final OrderService orderService;
 
     @GetMapping
-    public List<DishDto> getProducts() {
-        return dishService.findAll()
-                .stream()
-                .map(e -> DishDto.builder()
-                        .id(e.getId())
-                        .name(e.getName())
-                        .categoryName(e.getCategory().getTitle())
-                        .cost(e.getCost())
-                        .build())
-                .collect(Collectors.toList());
-    }
-
-    @GetMapping("/{dishId}")
-    public DishDto getDish(@PathVariable(name = "dishId") Long dishId) {
-        return dishService.findById(dishId)
-                .map(e -> DishDto.builder()
-                        .id(e.getId())
-                        .name(e.getName())
-                        .categoryName(e.getCategory().getTitle())
-                        .cost(e.getCost())
-                        .build())
-                .orElseThrow(() -> new EntityNotFoundException("Category " + dishId + " is not found"));
+    public List<Dish> getAll() {
+        return dishService.findAll();
     }
 
     @PostMapping
@@ -47,10 +28,9 @@ public class DishController {
         return dishService.create(dishDto);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        dishService.delete(id);
+    @PostMapping("/orders")
+    public String sendToOrder(@RequestBody List<DishDto> dishDto) {
+        return orderService.sendDishesToOrders(dishDto);
     }
-
 
 }

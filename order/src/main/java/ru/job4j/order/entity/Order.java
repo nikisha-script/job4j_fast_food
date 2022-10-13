@@ -23,14 +23,17 @@ public class Order {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @OneToMany(mappedBy = "marketOrder", cascade = CascadeType.PERSIST)
-    private List<OrderItem> items;
-
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "created")
+    private LocalDateTime created;
+
     @Column(name = "is_done")
     private Boolean isDone;
+
+    @OneToMany(mappedBy = "marketOrder", cascade = CascadeType.PERSIST)
+    private List<OrderItem> items;
 
     @Override
     public boolean equals(Object o) {

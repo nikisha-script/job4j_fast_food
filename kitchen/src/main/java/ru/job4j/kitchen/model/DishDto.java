@@ -1,12 +1,10 @@
-package ru.job4j.dish.dto;
+package ru.job4j.kitchen.model;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Builder
 public class DishDto {
 
     private String name;

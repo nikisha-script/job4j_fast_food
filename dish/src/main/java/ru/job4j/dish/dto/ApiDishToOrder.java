@@ -1,21 +1,18 @@
 package ru.job4j.dish.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DishDto {
+public class ApiDishToOrder {
 
     private String name;
     private String categoryName;
     private Double cost;
 
-    public DishDto(String name, String categoryName, Double cost) {
-        this.name = name;
-        this.categoryName = categoryName;
-        this.cost = cost;
-    }
 }

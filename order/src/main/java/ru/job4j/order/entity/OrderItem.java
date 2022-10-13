@@ -1,5 +1,6 @@
 package ru.job4j.order.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -22,14 +23,15 @@ public class OrderItem {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "count")
-    private Integer count;
+    @Column(name = "category_name")
+    private String category;
 
     @Column(name = "item_price")
     private Double itemPrice;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "item_id")
+    @JsonIgnore
     private Order marketOrder;
 
     @Override

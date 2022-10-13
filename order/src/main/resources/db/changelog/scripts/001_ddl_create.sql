@@ -4,6 +4,7 @@
 create table if not exists orders (
     id serial primary key,
     price real,
+    created timestamp,
     is_done bool default false
 )
 
@@ -11,7 +12,7 @@ create table if not exists orders (
 create table if not exists order_item (
     id serial primary key,
     name VARCHAR,
-    count int,
+    category_name VARCHAR,
     item_price real,
     item_id int references orders(id)
 )

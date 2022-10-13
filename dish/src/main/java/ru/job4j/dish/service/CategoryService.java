@@ -2,6 +2,7 @@ package ru.job4j.dish.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.job4j.dish.dto.CategoryDto;
 import ru.job4j.dish.store.CategoryRepository;
 import ru.job4j.dish.entity.Category;
 
@@ -14,8 +15,8 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    public Optional<Category> findByTitle(String title) {
-        return categoryRepository.findByTitle(title);
+    public Optional<Category> findByName(String title) {
+        return categoryRepository.findByName(title);
     }
 
     public List<Category> findAll() {
@@ -26,9 +27,9 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
-    public Category create(String name) {
+    public Category create(CategoryDto categoryDto) {
         Category category = new Category();
-        category.setTitle(name);
+        category.setName(categoryDto.getName());
         return categoryRepository.save(category);
     }
 

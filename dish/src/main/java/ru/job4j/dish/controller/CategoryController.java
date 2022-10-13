@@ -22,8 +22,7 @@ public class CategoryController {
         return categoryService.findAll()
                 .stream()
                 .map(e -> CategoryDto.builder()
-                        .id(e.getId())
-                        .name(e.getTitle())
+                        .name(e.getName())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -32,15 +31,14 @@ public class CategoryController {
     public CategoryDto getCategory(@PathVariable(name = "categoryId") Long categoryId) {
         return categoryService.findById(categoryId)
                 .map(e -> CategoryDto.builder()
-                        .id(e.getId())
-                        .name(e.getTitle())
+                        .name(e.getName())
                         .build())
                 .orElseThrow(() -> new EntityNotFoundException("Category " + categoryId + " is not found"));
     }
 
     @PostMapping
-    public Category createCategory(@RequestParam String name) {
-        return categoryService.create(name);
+    public Category createCategory(@RequestBody CategoryDto categoryDto) {
+        return categoryService.create(categoryDto);
     }
 
 }

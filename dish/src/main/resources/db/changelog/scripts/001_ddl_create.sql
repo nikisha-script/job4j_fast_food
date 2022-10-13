@@ -3,7 +3,7 @@
 --changeset nikishin:create_categories
 create table if not exists categories (
     id serial primary key,
-    title VARCHAR
+    name VARCHAR unique
 );
 
 --changeset nikishin:create_dishes
@@ -12,5 +12,5 @@ create table if not exists dishes (
     name VARCHAR,
     cost real,
     category_id int references categories(id)
-)
+);
 
