@@ -1,16 +1,17 @@
 package ru.job4j.dish.dto;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@Data
-@Builder
-public class CategoryDto {
-    private String name;
+import java.nio.file.Path;
 
-    public CategoryDto(String name) {
-        this.name = name;
-    }
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CategoryDto {
+
+    private String name;
+    private Path path;
+
 }

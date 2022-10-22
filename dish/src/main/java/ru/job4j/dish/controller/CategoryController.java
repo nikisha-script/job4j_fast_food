@@ -3,43 +3,45 @@ package ru.job4j.dish.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.dish.dto.CategoryDto;
+import ru.job4j.dish.model.Category;
+import ru.job4j.dish.model.Dish;
 import ru.job4j.dish.service.CategoryService;
-import ru.job4j.dish.entity.Category;
+import ru.job4j.dish.util.CreateCategory;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.io.IOException;
+import java.util.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/categories")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CategoryController {
 
     private final CategoryService categoryService;
+    private final CreateCategory createCategory;
 
     @GetMapping
-    public List<CategoryDto> getCategories() {
-        return categoryService.findAll()
-                .stream()
-                .map(e -> CategoryDto.builder()
-                        .name(e.getName())
-                        .build())
-                .collect(Collectors.toList());
+    public List<Category> getCategories() {
+        return categoryService.findAll();
+    }
+
+    @GetMapping("/dishes")
+    public List<Dish> getDishes(@RequestParam(name = "id") Long id) {
+        Category category = categoryService.findById(id).orElseThrow(() -> new EntityNotFoundException("Caregory " + id + " is not found"));
+        return category.getDishes();
     }
 
     @GetMapping("/{categoryId}")
-    public CategoryDto getCategory(@PathVariable(name = "categoryId") Long categoryId) {
+    public Category getCategory(@PathVariable(name = "categoryId") Long categoryId) {
         return categoryService.findById(categoryId)
-                .map(e -> CategoryDto.builder()
-                        .name(e.getName())
-                        .build())
                 .orElseThrow(() -> new EntityNotFoundException("Category " + categoryId + " is not found"));
     }
 
     @PostMapping
-    public Category createCategory(@RequestBody CategoryDto categoryDto) {
-        return categoryService.create(categoryDto);
+    public Category createCategory(@RequestBody CategoryDto categoryDto) throws IOException {
+        Category category = createCategory.created(categoryDto.getName(), categoryDto.getPath());
+        return categoryService.create(category);
     }
 
 }

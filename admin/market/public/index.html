@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <title>Market</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+
+<div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-body">
+          <div class="top-modal">
+              <img src="style/img/modal/icon.png" alt="">
+              <div class="modal-name">Войти в личный кабинет</div>
+          </div>
+          <div class="form">
+              <form action="" method="post">
+                  <div class="inpb">
+                      <input class="log" name="login" type="text" placeholder="Логин">
+                  </div>
+                  <div class="inpb">
+                      <input class="pas" name="password" type="password" placeholder="Пароль">
+                  </div>
+                  <div class="error_pwd">Не правильный логин или пароль</div>
+                  <div class="forgot_pass">Забыли пароль?</div>
+                  <button>Войти</button>
+              </form>
+              <div class="modal-txt">
+                  Впервые у нас? <span data-bs-toggle="modal" data-bs-target="#reg">Зарегистрироваться</span>
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="reg" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-body">
+            <div class="top-modal">
+                <img src="style/img/modal/icon.png" alt="">
+                <div class="modal-name">Регистрация</div>
+            </div>
+            <div class="form">
+                <form action="" method="post">
+                    <div class="inpb">
+                        <input class="log" name="login" type="text" placeholder="Логин">
+                    </div>
+                    <div class="inpb">
+                        <input class="pas" name="password" type="password" placeholder="Пароль">
+                    </div>
+                    <div class="inpb">
+                        <input class="pas" name="password" type="password" placeholder="Подтвердите пароль">
+                    </div>
+                    <div class="error_pwd">Такой аккаунт уже существует</div>
+                    <button class="btn-reg">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

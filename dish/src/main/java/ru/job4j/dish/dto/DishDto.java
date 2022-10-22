@@ -1,21 +1,22 @@
 package ru.job4j.dish.dto;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.nio.file.Path;
+
 @Data
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 public class DishDto {
 
     private String name;
-    private String categoryName;
+    private String description;
+    private int rating;
     private Double cost;
+    private int weight;
+    private Path path;
+    private String nameCategory;
 
-    public DishDto(String name, String categoryName, Double cost) {
-        this.name = name;
-        this.categoryName = categoryName;
-        this.cost = cost;
-    }
 }

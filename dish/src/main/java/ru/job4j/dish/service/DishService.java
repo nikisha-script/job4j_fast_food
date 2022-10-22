@@ -2,11 +2,8 @@ package ru.job4j.dish.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.job4j.dish.dto.DishDto;
-import ru.job4j.dish.store.CategoryRepository;
 import ru.job4j.dish.store.DishRepository;
-import ru.job4j.dish.entity.Category;
-import ru.job4j.dish.entity.Dish;
+import ru.job4j.dish.model.Dish;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +13,6 @@ import java.util.Optional;
 public class DishService {
 
     private final DishRepository dishRepository;
-    private final CategoryRepository categoryRepository;
-
 
     public List<Dish> findAll() {
         return dishRepository.findAll();
@@ -27,17 +22,8 @@ public class DishService {
         return dishRepository.findById(id);
     }
 
-    public Dish create(DishDto dishDto) {
-        Dish dish = new Dish();
-        Category category = categoryRepository.findByName(dishDto.getCategoryName()).get();
-        dish.setName(dishDto.getName());
-        dish.setCost(dishDto.getCost());
-        dish.setCategory(category);
+    public Dish create(Dish dish) {
         return dishRepository.save(dish);
-    }
-
-    public void delete(Long id) {
-        dishRepository.deleteById(id);
     }
 
 }

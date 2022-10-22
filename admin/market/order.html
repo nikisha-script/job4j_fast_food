@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Market</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
+  </head>
+  <body ng-app="market-front">
+ 
+    <div class="wrapper" ng-controller="indexController">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container">
+                  <a class="navbar-brand" href="index.html">
+                    <img src="style/img/header/full_logo.png" alt="#">
+                  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2">
+                      <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Меню
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" ng-repeat="c in categories">
+                                   <span><img src="data:image/jpg;base64, {{c.img}}"></span>
+                                      {{c.name}}
+                                 </a>
+                            </dvi>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="page.html">Доставка</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Оплата</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="booking.html" class="nav-link">Поддержка</a>
+                      </li>
+                    </ul>
+                    
+                    <div class="menu-right d-flex">
+                        <div class="menu-contact">
+                            <a href="tel: +78312826000">
+                                <img src="style/img/header/phone.png" alt="">
+                                <span>+7 (831) 282-60-00</span>
+                            </a>
+                        </div>
+                        <div class="menu-user">
+                            <button class="profile">
+                                <img src="style/img/header/person.png" alt="#">
+                            </button>
+                            <a href="card.html" class="cart">
+                                <img src="style/img/header/shopping-cart.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+        </header>
+        
+        <div class="order">
+          <div class="container">
+            <div class="wrap">
+              <div class="left-wrap">
+                <h2>Оформление заказа</h2>
+                <div class="left-wrap-count">
+                  <h3>Вы заказали:</h3>
+
+                  <div class="order-items">
+                    <div class="item">
+                      <img src="style/img/order/plus.svg" alt="">
+                      <div class="item-photo"></div>
+                      <span>Хачапури</span>
+                      <div class="price">
+                        <div class="input_range" data-desc="Ед. изм.: упаковка">
+                            <span class="min button">
+                                -
+                            </span>
+                            <input type="text" name="qty" id="qty" maxlength="12" />
+                            <span class="plus button">
+                                +
+                            </span>
+                        </div>
+                      </div>
+                      <span>350 ₽</span>
+                    </div>
+                    <div class="item">
+                      <img src="style/img/order/plus.svg" alt="">
+                      <div class="item-photo"></div>
+                      <span>Хачапури</span>
+                      <div class="price">
+                        <div class="input_range" data-desc="Ед. изм.: упаковка">
+                            <span class="min button">
+                                -
+                            </span>
+                            <input type="text" name="qty" id="qty" maxlength="12" />
+                            <span class="plus button">
+                                +
+                            </span>
+                        </div>
+                      </div>
+                      <span>350 ₽</span>
+                    </div>
+                    
+                    <div class="item">
+                      <img src="style/img/order/plus.svg" alt="">
+                      <div class="item-photo"></div>
+                      <span>Хачапури</span>
+                      <div class="price">
+                        <div class="input_range" data-desc="Ед. изм.: упаковка">
+                            <span class="min button">
+                                -
+                            </span>
+                            <input type="text" name="qty" id="qty" maxlength="12" />
+                            <span class="plus button">
+                                +
+                            </span>
+                        </div>
+                      </div>
+                      <span>350 ₽</span>
+                    </div>
+
+                  </div>
+
+
+                  <div class="order-footer">
+                    <a href="">Доставка</a>
+                    <span>Самовывоз (- 20%)</span>
+                  </div>
+                  <div class="order-total">
+                    <div class="order-to-pay">
+                      <span>Итого</span>
+                      <span>700 ₽</span>
+                      <span>Итого к оплате</span>
+                    </div>
+                    <div class="order-to-pay">
+                      <span>Доставка</span>
+                      <span>0 ₽</span>
+                      <span>700 ₽</span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="right-wrap">
+                <div class="input-order">
+                  <form action="" method="post">
+                    <div class="delivery-area">
+                      <span>Район доставки</span>
+                      <input type="text" id="text" name="text" placeholder="Выбрать" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Выбрать'"> 
+                    </div>
+                    <div class="delivery-area">
+                      <span>ФИО</span>
+                      <input type="text" id="text" name="text" placeholder="Введите Ваше полное имя" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите Ваше полное имя'"> 
+                    </div>
+                    <div class="delivery-area">
+                      <span>Телефон</span>
+                      <input type="text" id="text" name="text" placeholder="+7..." onfocus="this.placeholder = ''" onblur="this.placeholder = '+7...'"> 
+                    </div>
+                    <div class="delivery-area">
+                      <span>Адрес доставки</span>
+                      <input type="text" id="text" name="text" placeholder="Введите адрес доставки" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Введите адрес доставки'"> 
+                    </div>
+                    <div class="delivery-area">
+                      <span>Способ оплаты</span>
+                      <input type="text" id="text" name="text" placeholder="Наличные" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Наличные'"> 
+                    </div>
+                    <button type="submit"><span>Оформить заказ</span></button>
+                </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="footer-wrapper">
+                    <div class="footer-left">
+                        <div class="phones">
+                            <div class="phone-item">
+                                <span>Бесплатный звонок по РФ</span>
+                                <a href="tel:+78312826000">+7 (831) 282-60-00</a>
+                            </div>
+                            <div class="phone-item">
+                                <span>Для приема заказов</span>
+                                <a href="tel:+79040664685">+7 (904) 066-46-85</a>
+                            </div>
+                        </div>
+                        <div class="work-time">
+                            График работы по будням с 9:00 до 18:00
+                        </div>
+                        <div class="work-email">
+                            <a href="mailto: danya.nikisha@mail.ru">Email: danya.nikisha@mail.ru</a>
+                            <a href="" class="site-help">Поддержка</a>
+                        </div>
+                    </div>
+                    <div class="footer-center">
+                        <div class="social">
+                            <a href="https://vk.com/d.nikishin" target="_blank">Мы в вконтакте ></a>
+                        </div>
+                    </div>
+                    <div class="footer-right">
+                        <div class="person">
+                            <a href=""><img src="style/img/prd/person.png" alt=""><span>Войти / Регистрация</span></a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="footer_bottom">
+                    <span>©2020. Пиросмани</span>
+                    <a href="">Условия и соглашения</a>
+                    <a href="">Политика конфиденциальности</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+     <script src="main.js"></script>
+
+     <script>
+       jQuery(function() {
+            var j = jQuery;
+            var addInput = '#qty'
+            var n = 1;
+            j(addInput).val(n + ' шт.');
+
+            j('.plus').on('click', function() {
+                j(addInput).val(++n + ' шт.');
+            });
+
+            j('.min').on('click', function() {
+                if (n >= 1) {
+                    j(addInput).val(--n + ' шт.');
+                } else {
+                    alert('Error: Value must have more than 0');
+                }
+            });
+
+        });
+     </script>
+
+  </body>
+</html>
