@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
-
 import './style/style.css';
 import './style/fonts/font.css';
-
 import logo from './style/img/header/full_logo.png';
 import phone from './style/img/header/phone.png';
 import person from './style/img/header/person.png';
 import card from './style/img/header/shopping-cart.png';
-import banner from './style/img/header/banner.png';
+import Home from './pages/Home';
+import Order from './pages/Order';
+import {
+  Route,
+  Routes,
+  Link
+} from "react-router-dom";
 
 const getAllCategories = 'http://localhost:8183/api/v1/categories';
-const getAllDishes = 'http://localhost:8183/api/v1/dishes';
-let tempOrder = [];
 
 function App() {
 
   const [categories, setCategories] = useState([]);
-  const [dishes, setDishes] = useState([]);
-  const [orders, setOrders] = useState([]);
-  const [orderCount, setOrderCount] = useState(0);
- 
+  const [dish, setDish] = useState([]);
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
     fetch(getAllCategories)
       .then(res => res.json())
@@ -30,26 +31,14 @@ function App() {
       )
   }, [])
 
-  useEffect(() => {
-    fetch(getAllDishes)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setDishes(result);
-        }
-      )
-  }, [])
-
-
-
   return (
     <div className="wrapper">
         <header>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container">
-                  <a className="navbar-brand" href="index.html">
+                  <Link className="navbar-brand" to="/">
                     <img src={logo} alt="#"/>
-                  </a>
+                  </Link>
                   <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                   </button>
@@ -93,12 +82,12 @@ function App() {
                             <button className="profile" data-bs-toggle="modal" data-bs-target="#login">
                                 <img src={person} alt="#"/>
                             </button>
-                            <a className="cart" href="#">
+                            <Link className="cart" to="/order">
                                 <img src={card} alt=""/>
-                                  {orderCount !== 0 && (
-                                    <span>{orderCount}</span>
-                                  )}
-                            </a>
+                                  {count !== 0 && (
+                                    <span>{count}</span>
+                                  )} 
+                            </Link>
                         </div>
                     </div>
                   </div>
@@ -106,86 +95,13 @@ function App() {
               </nav>
         </header>
 
-        <section className="home-banner">
-            <div className="container">                         
-              <div className="block">
-                  <img src={banner} alt=""/>
-                  <h2>Подарок на первый заказ.</h2>
-                  <p>Получите 500 рублей за подписку на рассылку</p>
-                  <a href="">Подписаться</a>
-              </div> 
-            </div>
-        </section>
-
-        <section className="home-products">
-            <div className="container">
-                    <h3 className="all_products">Все товары категории</h3>
-                    <div className="product-wrapper">
-                      {dishes.map(e => {
-                        return (
-                            <div className="product">
-                              <div className="img">
-                                  <img src={`data:image/jpg;base64, ${e.img}`} alt=""/>
-                              </div>
-                              <a href="" className="title">{e.name}</a>
-                              <p className="description">{e.description}</p>
-                              <div className="rating">
-                                  <span className="active"></span>
-                                  <span className="active"></span>
-                                  <span className="active"></span>
-                                  <span className="active"></span>
-                                  <span></span>
-                              </div>
-                              <div className="price">
-                                  <b> {e.cost} ₽/кг</b> <span>{e.weight}.</span>
-                              </div>
-                              <button href="" className="to-cart" onClick={() => {
-                                tempOrder.push(e);
-                                setOrders(tempOrder);
-                                setOrderCount(orderCount + 1);
-                              }}>В корзину</button>
-                          </div>
-                        )
-                      })}
-                    </div>
-                    <div className="pagination">
-                        <nav aria-label="Page navigation example">
-                            <ul className="pagination">
-                             
-                              <li className="page-item active"><a className="page-link" href="#">1</a></li>
-                              <li className="page-item"><a className="page-link" href="#">2</a></li>
-                              <li className="page-item"><a className="page-link" href="#">3</a></li>
-                              <li className="page-item"><a className="page-link" href="#">4</a></li>
-                              <li className="page-item"><a className="page-link" href="#">***</a></li>
-                              <li className="page-item"><a className="page-link" href="#">8</a></li>
-                              <li className="page-item">
-                                <a className="page-link" href="#" aria-label="Next">
-                                  <img src="style/img/prd/icon.jpg" alt=""/>
-                                </a>
-                              </li>
-                            </ul>
-                          </nav>
-                    </div>
-            </div>
-        </section>
-
-        <section className="home-video">       
-                <div className="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/Oopljpn9FSo" title="YouTube video" allowfullscreen>
-                    </iframe>
-                </div>
-        </section>
-
-        <section className="delivery">
-            <div className="container">
-                <div className="block">
-                    <h4 className="title">
-                        Бесплатная доставка по Москве и Области от 2999 RUB!
-                    </h4>
-                    <a href="">Оформить</a>
-                </div>
-            </div>
-        </section>
+        <Routes>
+          <Route path='/' element = {<Home dish = {dish} onClickBtnDish = {(e) => {
+              setDish(e)
+              setCount(count + 1);
+            }}/>} />
+          <Route path='/order' element = {<Order dishes = {dish}/>} />
+        </Routes>
 
         <footer>
             <div className="container">

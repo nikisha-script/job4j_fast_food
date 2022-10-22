@@ -1154,7 +1154,7 @@ footer {
                 }
 
                 .order-items {
-                    margin-bottom: 220px;
+                    margin-bottom: 60px;
                     .item {
                         padding: 14px 0 15px;
                         display: flex;
@@ -1162,10 +1162,13 @@ footer {
                         align-items: center;
 
                         .item-photo {
-                            width: 77.88px;
-                            height: 57.53px;               
-                            background: #00AC4E;
-                            border-radius: 3.50806px;
+                            
+                            img {
+                                width: 77.88px;
+                                height: 57.53px;               
+                                background: #00AC4E;
+                                border-radius: 3.50806px;
+                            }
                         }
 
                         span {
@@ -1173,65 +1176,6 @@ footer {
                             font-size: 15.9362px;
                             line-height: 15px;
                             color: #000000;
-                        }
-
-                        .price {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            span {
-                                font-weight: 500;
-                                font-size: 14.4582px;
-                                line-height: 22px;
-                                color: #C6C6C6;
-                            }
-                            b {
-                                font-weight: 500;
-                                font-size: 18.0727px;
-                                line-height: 23px;
-                                color: #000000;
-                            }
-            
-                            .input_range {
-                                width: 116.57px;
-                                height: 42.47px;
-                                background: #FCFCFC;
-                                border: 0.903636px solid #EBEBEB;
-                                border-radius: 9.03636px;
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
-                                text-align: center;
-                                position: relative;
-                                &::after {
-                                    content: attr(data-desc);
-                                    position: absolute;
-                                    bottom: -18px;
-                                    right: 0;
-                                    font-weight: 400;
-                                    font-size: 9.03636px;
-                                    line-height: 14px;
-                                    color: #C6C6C6;
-                                }
-            
-                                span.button {
-                                    width: 30%;
-                                    text-align: center;
-                                    cursor: pointer;
-                                    font-size: 20px;
-                                    &.plus {
-                                        color: #00AC4E;
-                                    }
-                                }
-            
-                                input {
-                                    width: 40%;
-                                    text-align: center;
-                                    border: none;
-                                    background: none;
-                                }
-                            }
-                            
                         }
                 
                         border-top: 1px solid #EBEBEB;
