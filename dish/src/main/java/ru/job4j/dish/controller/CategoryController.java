@@ -2,6 +2,7 @@ package ru.job4j.dish.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.job4j.dish.aop.AppLogicAspect;
 import ru.job4j.dish.dto.CategoryDto;
 import ru.job4j.dish.model.Category;
 import ru.job4j.dish.model.Dish;
