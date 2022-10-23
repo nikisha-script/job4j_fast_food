@@ -1,8 +1,7 @@
-package ru.job4j.order.entity;
+package ru.job4j.order.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -23,13 +22,10 @@ public class OrderItem {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "category_name")
-    private String category;
-
     @Column(name = "item_price")
     private Double itemPrice;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "item_id")
     @JsonIgnore
     private Order marketOrder;
@@ -39,15 +35,15 @@ public class OrderItem {
         if (this == o) {
             return true;
         }
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         OrderItem orderItem = (OrderItem) o;
-        return id != null && Objects.equals(id, orderItem.id);
+        return Objects.equals(id, orderItem.id);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return id != null ? id.hashCode() : 0;
     }
 }

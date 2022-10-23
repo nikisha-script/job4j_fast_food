@@ -1,10 +1,10 @@
-package ru.job4j.order.entity;
+package ru.job4j.order.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.Hibernate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,13 +26,26 @@ public class Order {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "full_name")
+    private String fullName;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "delivery_method_pay")
+    private String deliveryMethodPay;
+
+    @CreationTimestamp
     @Column(name = "created")
     private LocalDateTime created;
 
     @Column(name = "is_done")
     private Boolean isDone;
 
-    @OneToMany(mappedBy = "marketOrder", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "marketOrder", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
     @Override
@@ -40,15 +53,15 @@ public class Order {
         if (this == o) {
             return true;
         }
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         Order order = (Order) o;
-        return id != null && Objects.equals(id, order.id);
+        return Objects.equals(id, order.id);
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return id != null ? id.hashCode() : 0;
     }
 }
