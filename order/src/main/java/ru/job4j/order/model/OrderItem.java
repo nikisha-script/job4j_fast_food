@@ -27,7 +27,6 @@ public class OrderItem {
 
     @ManyToOne()
     @JoinColumn(name = "item_id")
-    @JsonIgnore
     private Order marketOrder;
 
     @Override
