@@ -2,7 +2,7 @@ package ru.job4j.dish.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.job4j.dish.store.DishRepository;
+import ru.job4j.dish.repository.DishRepository;
 import ru.job4j.dish.model.Dish;
 
 import java.util.List;

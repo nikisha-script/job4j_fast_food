@@ -4,10 +4,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class OrderService {
 
@@ -19,15 +15,5 @@ public class OrderService {
         this.restTemplate = restTemplate;
         this.url = url;
     }
-
-/*    public String sendDishesToOrders(List<DishDto> dishes) {
-        ApiDishesToOrder view = new ApiDishesToOrder();
-        view.setDishes(dishes.stream()
-                .map(e -> new ApiDishToOrder(e.getName(), e.getCategoryName(), e.getCost()))
-                .collect(Collectors.toList())
-        );
-        *//* where, what, type response *//*
-        return restTemplate.postForEntity(url, view, String.class).getBody();
-    } */
 
 }

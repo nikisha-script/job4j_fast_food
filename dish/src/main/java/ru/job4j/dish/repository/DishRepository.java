@@ -1,7 +1,6 @@
-package ru.job4j.dish.store;
+package ru.job4j.dish.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.job4j.dish.model.Category;
 import ru.job4j.dish.model.Dish;
 
 import java.util.Optional;
