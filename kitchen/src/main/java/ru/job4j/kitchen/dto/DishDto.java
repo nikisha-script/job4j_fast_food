@@ -1,4 +1,4 @@
-package ru.job4j.kitchen.model;
+package ru.job4j.kitchen.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -6,7 +6,6 @@ import ru.job4j.order.dto.OrderItemDto;
 import ru.job4j.order.model.Order;
 import ru.job4j.order.model.OrderItem;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Component
@@ -28,7 +27,7 @@ public class OrderMapper {
                 add(item);
             });
         }});
-        rsl.setCreated(LocalDateTime.now());
+        rsl.setCreated(orderDto.getCreated());
         rsl.setIsDone(false);
         return rsl;
     }
@@ -48,7 +47,7 @@ public class OrderMapper {
                 add(item);
             });
         }});
-        rsl.setCreated(LocalDateTime.now());
+        rsl.setCreated(order.getCreated());
         rsl.setDone(false);
         return rsl;
     }

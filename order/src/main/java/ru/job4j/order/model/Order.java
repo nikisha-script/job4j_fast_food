@@ -45,7 +45,7 @@ public class Order {
     @Column(name = "is_done")
     private Boolean isDone;
 
-    @OneToMany(mappedBy = "marketOrder", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "marketOrder", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderItem> items;
 
     @Override
