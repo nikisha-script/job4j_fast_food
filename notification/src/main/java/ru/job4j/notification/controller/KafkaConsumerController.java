@@ -14,7 +14,7 @@ public class KafkaConsumerController {
     private final MessageService messageService;
 
     @KafkaListener(topics = {"messages"}, containerFactory = "singleFactory")
-    public void msgListener(OrderDto record) {
+    public void listenPreorderQueue(OrderDto record) {
         log.info("Поступил новый заказ: ");
         log.info(String.valueOf(record));
         Message message = new Message();

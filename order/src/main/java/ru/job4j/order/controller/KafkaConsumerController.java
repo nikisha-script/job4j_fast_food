@@ -12,7 +12,7 @@ public class KafkaConsumerController {
     private final OrderService orderService;
 
     @KafkaListener(topics = {"cooked_order"})
-    public void msgListener(String record) {
+    public void listenPreorderQueue(String record) {
         log.info("Поступил ответ: " + record);
         if ("false".equals(record)) {
             /* TODO update later */
