@@ -59,12 +59,14 @@ public class KitchenService {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                ListenableFuture<SendResult<Long, String>> answer = kafkaTemplate.send("cooked_order", "Заказ для: [*" + record.getFullName() + "*] готов к выдаче");
+                ListenableFuture<SendResult<Long, String>> answer;
+                answer = Thread.currentThread().isInterrupted() ? kafkaTemplate.send("cooked_order", "false") : kafkaTemplate.send("cooked_order", "Заказ для: [*" + record.getFullName() + "*] готов к выдаче");
                 answer.addCallback(success -> log.info(String.valueOf(success)),
-                        error -> kafkaTemplate.send("cooked_order", "false"));
+                        error -> log.info(String.valueOf(error)));
                 kafkaTemplate.flush();
             }
         }, timerValue);
+        timer.cancel();
     }
 
 
