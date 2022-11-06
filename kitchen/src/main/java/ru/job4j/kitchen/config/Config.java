@@ -20,6 +20,7 @@ import ru.job4j.kitchen.dto.OrderDto;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
 
 @Configuration
 @EnableKafka
@@ -102,6 +103,11 @@ public class Config {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public Timer timer() {
+        return new Timer();
     }
 
 }

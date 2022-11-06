@@ -26,7 +26,7 @@ public class KafkaConsumerConfig {
     private String kafkaServer;
 
     @Value("${spring.kafka.consumer.group-id}")
-    private String kafkaGroupId;
+    private String kafkaConsumerId;
 
     @Bean
     public KafkaListenerContainerFactory<?> batchFactory() {
@@ -49,6 +49,11 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
+    public ConsumerFactory<Long, OrderDto> consumerFactory() {
+        return new DefaultKafkaConsumerFactory<>(consumerConfigs());
+    }
+
+    @Bean
     public KafkaListenerContainerFactory<?> kafkaListenerContainerFactory() {
         return new ConcurrentKafkaListenerContainerFactory<>();
     }
@@ -59,18 +64,14 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaGroupId);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaConsumerId);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
         return props;
-    }
-
-    @Bean
-    public ConsumerFactory<Long, OrderDto> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
     public StringJsonMessageConverter converter() {
         return new StringJsonMessageConverter();
     }
+
 }

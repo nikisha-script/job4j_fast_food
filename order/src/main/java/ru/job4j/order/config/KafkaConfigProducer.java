@@ -47,4 +47,5 @@ public class KafkaConfigProducer {
         template.setMessageConverter(new StringJsonMessageConverter());
         return template;
     }
+
 }

@@ -15,6 +15,8 @@ import ru.job4j.kitchen.model.Message;
 import ru.job4j.kitchen.repository.MessageRepository;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +29,13 @@ public class KitchenService {
     @Value("${market.dishes-service.url}")
     private String urlDishes;
 
+    @Value("${timer.task}")
+    private long timerValue;
+
     private final MessageRepository messageRepository;
     private final KafkaTemplate<Long, String> kafkaTemplate;
     private final RestTemplate restTemplate;
+    private final Timer timer;
 
     public CategoryDto createCategory(CategoryDto categoryDto) {
         return restTemplate.postForObject(urlCategories, categoryDto, CategoryDto.class);
@@ -49,19 +55,16 @@ public class KitchenService {
     }
 
     public void sendMessage(OrderDto record) {
-        new Thread(() -> {
-            ListenableFuture<SendResult<Long, String>> answer;
-            try {
-                Thread.sleep(5000);
-                answer = kafkaTemplate.send("cooked_order", "Заказ для: [*" + record.getFullName() + "*] готов к выдаче");
-            } catch (InterruptedException e) {
-                log.error("InterruptedException ", e);
-                answer = kafkaTemplate.send("cooked_order", "false");
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                ListenableFuture<SendResult<Long, String>> answer = kafkaTemplate.send("cooked_order", "Заказ для: [*" + record.getFullName() + "*] готов к выдаче");
+                answer.addCallback(success -> log.info(String.valueOf(success)),
+                        error -> kafkaTemplate.send("cooked_order", "false"));
+                kafkaTemplate.flush();
             }
-            answer.addCallback(success -> log.info(String.valueOf(success)),
-                    error -> log.error(String.valueOf(error)));
-            kafkaTemplate.flush();
-        }).start();
+        }, timerValue);
     }
 
 
